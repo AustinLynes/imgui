@@ -1,10 +1,18 @@
 project "ImGui"
 	kind "StaticLib"
 	language "C++"
-    staticruntime "off"
+    staticruntime "on"
 
-	targetdir ("../../build/" .. outputdir .. "/%{prj.name}")
-	objdir ("../../build/int/" .. outputdir .. "/%{prj.name}")
+    targetdir     (BIN_DIR)
+    objdir        (OBJ_DIR)
+
+	includedirs
+	{
+		"./",
+		"backends",
+		"../GLFW/include",
+		"../GLFW/src",
+	}
 
 	files
 	{
@@ -18,7 +26,11 @@ project "ImGui"
 		"imstb_rectpack.h",
 		"imstb_textedit.h",
 		"imstb_truetype.h",
-		"imgui_demo.cpp"
+		"imgui_demo.cpp",
+		"backends/imgui_impl_glfw.h",
+		"backends/imgui_impl_glfw.cpp",
+		"backends/imgui_impl_opengl3.h",
+		"backends/imgui_impl_opengl3.cpp",
 	}
 
 	filter "system:windows"
